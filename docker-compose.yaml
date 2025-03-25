@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:15  # Use a specific PostgreSQL version (15 is a good stable choice)
+    container_name: dnd-dm-db
+    restart: always  # Restart the container if it fails
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-dungeon-master}  # Use environment variable, default to 'postgres'
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dungeon-master}  # Use environment variable, default to 'password'
+      POSTGRES_DB: ${POSTGRES_DB:-dnd-dm}      # Use environment variable, default to 'dungeon_pinball'
+    ports:
+      - "5432:5432"  # Expose the default PostgreSQL port (5432)
+    volumes:
+      - db_data:/var/lib/postgresql/data  # Persist data to a named volume
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4  # Official pgAdmin 4 image
+    container_name: dnd-dm-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-dungeon-master}  # Change this!
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-dungeon-master}      # Change this!
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8080:80"  # Expose pgAdmin on port 8080 of the host
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin  # Persist pgAdmin data
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:80/misc/ping"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+
+volumes:
+  db_data:
+  pgadmin_data:
