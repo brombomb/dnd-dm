@@ -11,6 +11,7 @@ import {
   Checkbox,
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
+import { styled } from '@mui/material/styles';
 
 import { ChoiceOption, Room } from '../types';
 
@@ -18,6 +19,10 @@ interface RoomFormProps {
   onSubmit: (room: Room) => void;
   initialRoom?: Room;
 }
+
+const StyledFormGroup = styled(FormGroup)({
+  flexDirection: 'row', // Make checkboxes horizontal
+});
 
 const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, initialRoom }) => {
   const [room, setRoom] = useState<Room>(initialRoom || {
@@ -73,12 +78,12 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, initialRoom }) => {
   };
 
   return (
-      <>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
       <Typography variant="h6" gutterBottom>
         {initialRoom ? 'Edit Room' : 'Add Room'}
       </Typography>
       <Grid container spacing={2}>
-        <Grid size={{xs: 12, sm: 6}}>
+        <Grid size={{ xs:12, sm:6}}>
           <FormControl fullWidth margin="normal">
             <TextField
               fullWidth
@@ -92,47 +97,10 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, initialRoom }) => {
             />
           </FormControl>
         </Grid>
-        <Grid size={{xs: 12, sm: 6}}>
-          <FormControl fullWidth margin="normal">
-            <TextField
-              fullWidth
-              id="points"
-              name="points"
-              label="Points"
-              value={room.points}
-              onChange={handleChange}
-              type="number"
-            />
-          </FormControl>
-        </Grid>
-        <Grid size={{xs: 12, sm: 6}}>
-          <FormControl fullWidth margin="normal">
-            <TextField
-              fullWidth
-              id="items"
-              name="items"
-              label="Items"
-              value={room.items}
-              onChange={handleChange}
-            />
-          </FormControl>
-        </Grid>
-        <Grid size={{xs: 12, sm: 6}}>
-          <FormControl fullWidth margin="normal">
-            <TextField
-              fullWidth
-              id="monsters"
-              name="monsters"
-              label="Monsters"
-              value={room.monsters}
-              onChange={handleChange}
-            />
-          </FormControl>
-        </Grid>
-        <Grid size={{ xs: 12 }}>
+        <Grid size={{ xs:12, sm:6 }}>
           <FormControl component="fieldset" fullWidth margin="normal">
             <Typography variant="subtitle1">Choices</Typography>
-            <FormGroup>
+            <StyledFormGroup>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -163,14 +131,51 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, initialRoom }) => {
                 }
                 label="Right"
               />
-            </FormGroup>
+            </StyledFormGroup>
+          </FormControl>
+        </Grid>
+        <Grid size={{ xs:12, sm:6}}>
+          <FormControl fullWidth margin="normal">
+            <TextField
+              fullWidth
+              id="points"
+              name="points"
+              label="Points"
+              value={room.points}
+              onChange={handleChange}
+              type="number"
+            />
+          </FormControl>
+        </Grid>
+        <Grid size={{ xs:12, sm:6}}>
+          <FormControl fullWidth margin="normal">
+            <TextField
+              fullWidth
+              id="items"
+              name="items"
+              label="Items"
+              value={room.items}
+              onChange={handleChange}
+            />
+          </FormControl>
+        </Grid>
+        <Grid size={{ xs:12, sm:6}}>
+          <FormControl fullWidth margin="normal">
+            <TextField
+              fullWidth
+              id="monsters"
+              name="monsters"
+              label="Monsters"
+              value={room.monsters}
+              onChange={handleChange}
+            />
           </FormControl>
         </Grid>
       </Grid>
       <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
         {initialRoom ? 'Update Room' : 'Add Room'}
       </Button>
-    </>
+    </Box>
   );
 };
 

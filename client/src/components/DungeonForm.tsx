@@ -8,6 +8,7 @@ import {
   FormControl,
   SelectChangeEvent,
 } from '@mui/material';
+import Grid from '@mui/material/Grid2';
 import { Dungeon, Room } from '../types';
 import { getWeek } from 'date-fns';
 import RoomForm from './RoomForm';
@@ -56,9 +57,12 @@ const DungeonForm: React.FC<DungeonFormProps> = ({ onSubmit }) => {
       <Typography variant="h6" gutterBottom>
         Create a New Dungeon
       </Typography>
-      <FormControl fullWidth margin="normal">
+
+      <Grid container spacing={2}>
+        <Grid size={{ xs:12, sm:6}}>
+      <FormControl margin="normal" fullWidth>
         <TextField
-          fullWidth
+        fullWidth
           margin="normal"
           id="weekNumber"
           name="weekNumber"
@@ -71,8 +75,11 @@ const DungeonForm: React.FC<DungeonFormProps> = ({ onSubmit }) => {
           }}
         />
       </FormControl>
+        </Grid>
+        <Grid size={{ xs:12, sm:6}}>
+      <FormControl margin="normal" fullWidth>
       <TextField
-        fullWidth
+      fullWidth
         margin="normal"
         id="name"
         name="name"
@@ -80,7 +87,9 @@ const DungeonForm: React.FC<DungeonFormProps> = ({ onSubmit }) => {
         value={dungeon.level}
         onChange={handleChange}
       />
-
+      </FormControl>
+      </Grid>
+</Grid>
       <Typography variant="h6" gutterBottom>
         Starting Room
       </Typography>
