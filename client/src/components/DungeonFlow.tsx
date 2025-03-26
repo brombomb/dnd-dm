@@ -1,4 +1,5 @@
-import ReactFlow from 'react-flow-renderer';
+import { ReactFlow } from '@xyflow/react';
+
 
 const initialNodes = [
   { id: '1', data: { label: 'Start Room' }, position: { x: 100, y: 100 } },
