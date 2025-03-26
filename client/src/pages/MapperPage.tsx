@@ -1,8 +1,8 @@
-import DungeonFlow from '../components/DungeonFlow';
+import DungeonForm from '../components/DungeonForm';
 
 function MapperPage() {
   return (
-    <DungeonFlow />
+    <DungeonForm />
   );
 }
 

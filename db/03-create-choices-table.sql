@@ -7,5 +7,4 @@ CREATE TABLE choices (
     from_room_id INTEGER REFERENCES rooms(id) NOT NULL,
     choice_type choice_option NOT NULL,
     to_room_id INTEGER REFERENCES rooms(id) NOT NULL,
-    choice_order INTEGER
 );
