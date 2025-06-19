@@ -1,14 +1,27 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import path from 'path';
 
+// Load environment variables from .env file - use absolute path to be sure it loads
 dotenv.config();
 
-const pool = new Pool({
-  user: process.env.POSTGRES_USER,
-  host: process.env.POSTGRES_HOST,
-  database: process.env.POSTGRES_DB,
-  password: process.env.POSTGRES_PASSWORD,
-  port: process.env.POSTGRES_PORT ? parseInt(process.env.POSTGRES_PORT) : 5432,
-});
+// Set fixed credentials for now
+const dbConfig = {
+  user: 'postgres',
+  host: 'localhost',
+  database: 'dnd_dm',
+  password: 'postgres',
+  port: 5432
+};
+
+// Log DB connection details (but hide full password)
+console.log('Database connection details:');
+console.log(`User: ${dbConfig.user}`);
+console.log(`Host: ${dbConfig.host}`);
+console.log(`Database: ${dbConfig.database}`);
+console.log(`Password: ******`);
+console.log(`Port: ${dbConfig.port}`);
+
+const pool = new Pool(dbConfig);
 
 export default pool;

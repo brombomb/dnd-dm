@@ -1,4 +1,4 @@
-CREATE TYPE choice_option AS ENUM ('Left', 'Straight', 'Right');
+CREATE TYPE choice_option AS ENUM ('Left', 'Center', 'Right');
 
 CREATE TABLE choices (
     id SERIAL PRIMARY KEY,
@@ -6,5 +6,5 @@ CREATE TABLE choices (
     dungeon_level INTEGER NOT NULL,
     from_room_id INTEGER REFERENCES rooms(id) NOT NULL,
     choice_type choice_option NOT NULL,
-    to_room_id INTEGER REFERENCES rooms(id) NOT NULL,
+    to_room_id INTEGER REFERENCES rooms(id) NOT NULL
 );
