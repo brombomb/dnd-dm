@@ -8,6 +8,7 @@ export interface Dungeon {
 }
 
 export interface Room {
+  id?: number;
   roomNumber: number;
   description?: string;
   isStart?: boolean;

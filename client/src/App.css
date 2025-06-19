@@ -1,8 +1,86 @@
 #root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  min-height: 100vh;
+  background-color: #2c2826;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235a4e40' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b59e5f' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(to bottom, rgba(44, 40, 38, 1), rgba(30, 27, 25, 0.95));
+  background-attachment: fixed;
+}
+
+/* Mobile-first responsive container */
+.container {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 1rem;
+}
+
+.app-container {
+  position: relative;
+  padding-top: 1.5rem !important;
+}
+
+.app-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(to right, #8c7135, #b59e5f, #e8d18f, #b59e5f, #8c7135);
+  border-radius: 0 0 4px 4px;
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+  }
+}
+
+/* Navigation links styling */
+.nav-links {
+  margin: 0.5rem 0;
+}
+
+.nav-links a {
+  color: #b59e5f;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.nav-links a:hover {
+  color: #e8d18f;
+  background-color: rgba(181, 158, 95, 0.1);
+  text-decoration: none;
+}
+
+/* Button and hover styles are defined inline */
+
+/* Custom scrollbar for fantasy theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(59, 55, 52, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #b59e5f, #8c7135);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #c5ae6f, #9c8145);
 }
 
 .logo {
